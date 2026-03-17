@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AptCode – Aptitude & Coding Practice</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <a href="#home" class="nav-logo" data-nav="home">
+        <div class="nav-logo-icon">⚡</div>
+        AptCode
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-nav="home">🏠 Home</a></li>
+        <li><a href="#aptitude" data-nav="aptitude">🧠 Aptitude</a></li>
+        <li><a href="#coding" data-nav="coding">💻 Coding</a></li>
+        <li><a href="#games" data-nav="games">🎮 Games</a></li>
+        <li><a href="#daily" data-nav="daily">🔥 Daily</a></li>
+        <li><a href="#leaderboard" data-nav="leaderboard">🏆 Leaderboard</a></li>
+        <li><a href="#dashboard" data-nav="dashboard">📊 Dashboard</a></li>
+    </ul>
+
+    <div class="nav-right">
+        <!-- Auth Buttons (logged out) -->
+        <div id="authBtns" style="display:flex;gap:8px">
+            <button class="btn btn-secondary btn-sm" data-open-modal="loginModal">Log In</button>
+            <button class="btn btn-primary btn-sm" data-open-modal="registerModal">Sign Up</button>
+        </div>
+
+        <!-- User Menu (logged in) -->
+        <div id="userMenu" style="display:none;align-items:center;gap:10px">
+            <div class="streak-widget" style="padding:6px 12px;font-size:0.8rem">
+                🔥 <span id="navStreak">0</span>
+            </div>
+            <div class="nav-avatar" id="navAvatar" title="Profile">U</div>
+            <span style="font-size:0.85rem;color:var(--text-secondary)" id="navUsername"></span>
+            <button class="btn btn-secondary btn-sm" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="main-content">
+
+    <!-- ========== HOME PAGE ========== -->
+    <div class="page active" id="page-home">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-badge">
+                <span>⚡</span> Placement Preparation Platform
+            </div>
+            <h1>Master <span>Aptitude</span> &<br>Coding Skills</h1>
+            <p>Your all-in-one platform to crack placements — practice aptitude questions, solve coding challenges, play learning games, and track your progress.</p>
+            <div class="hero-cta">
+                <button class="btn btn-primary btn-lg" data-nav="aptitude" onclick="APP.navigateTo('aptitude')">
+                    🧠 Start Practicing
+                </button>
+                <button class="btn btn-secondary btn-lg" data-nav="daily" onclick="APP.navigateTo('daily')">
+                    🔥 Today's Challenge
+                </button>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(108,99,255,0.1)">🧠</div>
+                <div class="stat-value" style="color:var(--accent)">200+</div>
+                <div class="stat-label">Aptitude Questions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(0,217,255,0.1)">💻</div>
+                <div class="stat-value" style="color:var(--accent-2)">50+</div>
+                <div class="stat-label">Coding Problems</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(67,233,123,0.1)">🎮</div>
+                <div class="stat-value" style="color:var(--easy)">4</div>
+                <div class="stat-label">Learning Games</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background:rgba(247,147,30,0.1)">🔥</div>
+                <div class="stat-value" style="color:var(--medium)">Daily</div>
+                <div class="stat-label">New Challenges</div>
+            </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="features-grid">
+            <div class="feature-card" onclick="APP.navigateTo('aptitude')">
+                <div class="feature-icon" style="background:rgba(108,99,255,0.1)">🧠</div>
+                <h3>Aptitude Practice</h3>
+                <p style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;line-height:1.6">
+                    Logical reasoning, quantitative aptitude, verbal ability, and puzzles with detailed explanations.
+                </p>
+                <div style="margin-top:16px;font-size:0.8rem;color:var(--accent);font-weight:600">Start Practicing →</div>
+            </div>
+
+            <div class="feature-card" onclick="APP.navigateTo('coding')">
+                <div class="feature-icon" style="background:rgba(0,217,255,0.1)">💻</div>
+                <h3>Coding Challenges</h3>
+                <p style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;line-height:1.6">
+                    Easy to hard programming problems with hints, solutions, and in-browser code execution.
+                </p>
+                <div style="margin-top:16px;font-size:0.8rem;color:var(--accent-2);font-weight:600">Solve Problems →</div>
+            </div>
+
+            <div class="feature-card" onclick="APP.navigateTo('games')">
+                <div class="feature-icon" style="background:rgba(255,107,157,0.1)">🎮</div>
+                <h3>Brain Games</h3>
+                <p style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;line-height:1.6">
+                    Memory match, number sequences, math blitz, and typing speed — sharpen your mind!
+                </p>
+                <div style="margin-top:16px;font-size:0.8rem;color:var(--accent-3);font-weight:600">Play Games →</div>
+            </div>
+
+            <div class="feature-card" onclick="APP.navigateTo('daily')">
+                <div class="feature-icon" style="background:rgba(247,147,30,0.1)">🔥</div>
+                <h3>Daily Challenge</h3>
+                <p style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;line-height:1.6">
+                    A fresh aptitude + coding challenge every day. Complete both for a 50-point bonus!
+                </p>
+                <div style="margin-top:16px;font-size:0.8rem;color:var(--medium);font-weight:600">Accept Challenge →</div>
+            </div>
+
+            <div class="feature-card" onclick="APP.navigateTo('leaderboard')">
+                <div class="feature-icon" style="background:rgba(67,233,123,0.1)">🏆</div>
+                <h3>Leaderboard</h3>
+                <p style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;line-height:1.6">
+                    See where you rank among all users. Compete, learn, and climb to the top!
+                </p>
+                <div style="margin-top:16px;font-size:0.8rem;color:var(--easy);font-weight:600">View Rankings →</div>
+            </div>
+
+            <div class="feature-card" onclick="APP.navigateTo('dashboard')">
+                <div class="feature-icon" style="background:rgba(108,99,255,0.1)">📊</div>
+                <h3>Your Dashboard</h3>
+                <p style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;line-height:1.6">
+                    Track your progress, scores, streaks, and see a detailed breakdown of your performance.
+                </p>
+                <div style="margin-top:16px;font-size:0.8rem;color:var(--accent);font-weight:600">View Progress →</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== APTITUDE PAGE ========== -->
+    <div class="page" id="page-aptitude">
+        <div class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">🧠 Aptitude Practice</h2>
+                    <div class="section-subtitle">Build strong problem-solving fundamentals</div>
+                </div>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="tabs" style="margin-bottom:20px" id="aptCategoryTabs">
+                <button class="tab active" onclick="APP.loadAptitude('logical');setActiveTab(this,'aptCategoryTabs')">🔗 Logical</button>
+                <button class="tab" onclick="APP.loadAptitude('quantitative');setActiveTab(this,'aptCategoryTabs')">📊 Quantitative</button>
+                <button class="tab" onclick="APP.loadAptitude('verbal');setActiveTab(this,'aptCategoryTabs')">📝 Verbal</button>
+                <button class="tab" onclick="APP.loadAptitude('puzzles');setActiveTab(this,'aptCategoryTabs')">🧩 Puzzles</button>
+            </div>
+
+            <!-- Difficulty Filter -->
+            <div class="filter-pills" id="aptDiffFilter">
+                <button class="pill active" onclick="APP.loadAptitude(getActiveCat('aptCategoryTabs'),'');setActivePill(this,'aptDiffFilter')">All Levels</button>
+                <button class="pill" onclick="APP.loadAptitude(getActiveCat('aptCategoryTabs'),'easy');setActivePill(this,'aptDiffFilter')">
+                    <span style="color:var(--easy)">●</span> Easy
+                </button>
+                <button class="pill" onclick="APP.loadAptitude(getActiveCat('aptCategoryTabs'),'medium');setActivePill(this,'aptDiffFilter')">
+                    <span style="color:var(--medium)">●</span> Medium
+                </button>
+                <button class="pill" onclick="APP.loadAptitude(getActiveCat('aptCategoryTabs'),'hard');setActivePill(this,'aptDiffFilter')">
+                    <span style="color:var(--hard)">●</span> Hard
+                </button>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="aptitudeQuestions">
+                <div class="loading"><div class="spinner"></div><span>Loading questions...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CODING PAGE ========== -->
+    <div class="page" id="page-coding">
+        <div class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">💻 Coding Practice</h2>
+                    <div class="section-subtitle">Sharpen your programming skills — write and run code in-browser</div>
+                </div>
+            </div>
+
+            <!-- Difficulty Tabs -->
+            <div class="tabs" style="margin-bottom:24px" id="codeDiffTabs">
+                <button class="tab active" onclick="APP.loadCoding('');setActiveTab(this,'codeDiffTabs')">All Problems</button>
+                <button class="tab" onclick="APP.loadCoding('easy');setActiveTab(this,'codeDiffTabs')">
+                    <span style="color:var(--easy)">●</span> Easy
+                </button>
+                <button class="tab" onclick="APP.loadCoding('medium');setActiveTab(this,'codeDiffTabs')">
+                    <span style="color:var(--medium)">●</span> Medium
+                </button>
+                <button class="tab" onclick="APP.loadCoding('hard');setActiveTab(this,'codeDiffTabs')">
+                    <span style="color:var(--hard)">●</span> Hard
+                </button>
+            </div>
+
+            <div id="codingList">
+                <div class="loading"><div class="spinner"></div><span>Loading problems...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== GAMES PAGE ========== -->
+    <div class="page" id="page-games">
+        <div class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">🎮 Learning Games</h2>
+                    <div class="section-subtitle">Improve logic, memory, and speed through interactive games</div>
+                </div>
+            </div>
+
+            <div class="games-grid" style="margin-bottom:32px">
+                <div class="game-card" data-game="memory">
+                    <span class="game-icon">🧠</span>
+                    <div class="game-title">Memory Match</div>
+                    <div class="game-desc">Flip cards and find matching pairs. Trains visual memory and concentration.</div>
+                    <button class="btn btn-primary btn-sm" style="margin-top:16px;width:100%">Play Now</button>
+                </div>
+
+                <div class="game-card" data-game="sequence">
+                    <span class="game-icon">🔢</span>
+                    <div class="game-title">Number Sequence</div>
+                    <div class="game-desc">Watch and repeat number sequences. Each level adds a new digit — how far can you go?</div>
+                    <button class="btn btn-primary btn-sm" style="margin-top:16px;width:100%">Play Now</button>
+                </div>
+
+                <div class="game-card" data-game="math">
+                    <span class="game-icon">⚡</span>
+                    <div class="game-title">Math Blitz</div>
+                    <div class="game-desc">Solve arithmetic as fast as possible in 60 seconds. Build streak bonuses for extra points!</div>
+                    <button class="btn btn-primary btn-sm" style="margin-top:16px;width:100%">Play Now</button>
+                </div>
+
+                <div class="game-card" data-game="typing">
+                    <span class="game-icon">⌨️</span>
+                    <div class="game-title">Code Typing Speed</div>
+                    <div class="game-desc">Type code snippets as fast and accurately as you can. Boost your WPM and accuracy!</div>
+                    <button class="btn btn-primary btn-sm" style="margin-top:16px;width:100%">Play Now</button>
+                </div>
+            </div>
+
+            <!-- Active Game Area -->
+            <div id="gameArea" style="display:none">
+                <div class="section-header" style="margin-bottom:20px">
+                    <h3>🎯 Game Arena</h3>
+                    <button class="btn btn-secondary btn-sm" onclick="document.getElementById('gameArea').style.display='none'">✕ Close Game</button>
+                </div>
+                <div class="game-area" id="gameCanvas">
+                    <!-- Game renders here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== DAILY CHALLENGE PAGE ========== -->
+    <div class="page" id="page-daily">
+        <div class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">🔥 Daily Challenge</h2>
+                    <div class="section-subtitle">One aptitude + one coding problem. Complete both for a 50-point bonus!</div>
+                </div>
+                <div class="daily-timer" style="font-size:0.9rem;padding:8px 16px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border)" id="dailyTimer">⏰ Loading...</div>
+            </div>
+
+            <div id="dailyContent">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== LEADERBOARD PAGE ========== -->
+    <div class="page" id="page-leaderboard">
+        <div class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">🏆 Leaderboard</h2>
+                    <div class="section-subtitle">Top performers ranked by total score</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="APP.loadLeaderboard()">↺ Refresh</button>
+            </div>
+
+            <div class="card" style="padding:0;overflow:hidden">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th style="width:60px">#</th>
+                            <th>Student</th>
+                            <th>Total Score</th>
+                            <th>Aptitude</th>
+                            <th>Coding</th>
+                            <th>Streak</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <tr><td colspan="6" style="text-align:center;padding:40px">
+                            <div class="spinner" style="margin:0 auto"></div>
+                        </td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== DASHBOARD PAGE ========== -->
+    <div class="page" id="page-dashboard">
+        <div class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">📊 Your Dashboard</h2>
+                    <div class="section-subtitle">Your learning journey at a glance</div>
+                </div>
+            </div>
+            <div id="dashboardContent">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- ===== LOGIN MODAL ===== -->
+<div class="modal-overlay" id="loginModal">
+    <div class="modal">
+        <button class="modal-close" data-close-modal>✕</button>
+        <div class="modal-logo">
+            <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem">⚡</div>
+        </div>
+        <h2 style="margin-top:12px">Welcome Back</h2>
+        <p>Log in to track your progress and scores</p>
+        <div class="form-error" id="loginError"></div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label class="form-label">Username or Email</label>
+                <input class="form-input" name="username" type="text" placeholder="your_username" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input class="form-input" name="password" type="password" placeholder="••••••••" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px">Login</button>
+        </form>
+        <div class="auth-switch">
+            Don't have an account? <a id="switchToRegister">Sign up free</a>
+        </div>
+        <div style="margin-top:16px;padding:12px;background:var(--bg-input);border-radius:8px;font-size:0.8rem;color:var(--text-muted);text-align:center">
+            Demo: username <code style="color:var(--accent)">demo_user</code> / password <code style="color:var(--accent)">password</code>
+        </div>
+    </div>
+</div>
+
+<!-- ===== REGISTER MODAL ===== -->
+<div class="modal-overlay" id="registerModal">
+    <div class="modal">
+        <button class="modal-close" data-close-modal>✕</button>
+        <div class="modal-logo">
+            <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem">⚡</div>
+        </div>
+        <h2 style="margin-top:12px">Create Account</h2>
+        <p>Join AptCode and start your learning journey</p>
+        <div class="form-error" id="registerError"></div>
+        <form id="registerForm">
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input class="form-input" name="full_name" type="text" placeholder="Your full name" autocomplete="name">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="form-group">
+                    <label class="form-label">Username *</label>
+                    <input class="form-input" name="username" type="text" placeholder="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email *</label>
+                    <input class="form-input" name="email" type="email" placeholder="you@email.com" required autocomplete="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password * (min 6 chars)</label>
+                <input class="form-input" name="password" type="password" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px">Create Account</button>
+        </form>
+        <div class="auth-switch">
+            Already have an account? <a id="switchToLogin">Log in</a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="js/main.js"></script>
+<script src="js/games.js"></script>
+<script>
+// Helper functions used in inline onclick handlers
+function setActiveTab(tab, containerId) {
+    document.querySelectorAll(`#${containerId} .tab`).forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+}
+
+function setActivePill(pill, containerId) {
+    document.querySelectorAll(`#${containerId} .pill`).forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+}
+
+function getActiveCat(tabsId) {
+    const active = document.querySelector(`#${tabsId} .tab.active`);
+    if (!active) return 'logical';
+    const text = active.textContent.toLowerCase().trim();
+    if (text.includes('logical')) return 'logical';
+    if (text.includes('quant')) return 'quantitative';
+    if (text.includes('verbal')) return 'verbal';
+    if (text.includes('puzzle')) return 'puzzles';
+    return 'logical';
+}
+
+// Override game area injection to point to gameCanvas
+const origLoadGame = GAMES.loadGame.bind(GAMES);
+GAMES.loadGame = function(type) {
+    const outerArea = document.getElementById('gameArea');
+    if (outerArea) outerArea.style.display = 'block';
+    const canvas = document.getElementById('gameCanvas');
+    if (canvas) {
+        // Temporarily reassign area
+        this.currentGame = type;
+        switch(type) {
+            case 'memory': this.initMemoryGame(canvas); break;
+            case 'sequence': this.initSequenceGame(canvas); break;
+            case 'math': this.initMathGame(canvas); break;
+            case 'typing': this.initTypingGame(canvas); break;
+        }
+        outerArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+};
+</script>
+
+</body>
+</html>
